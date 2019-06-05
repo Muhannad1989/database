@@ -15,7 +15,7 @@ db.connect(err => {
 });
 
 // create database
-let create_db = `CREATE DATABASE world`;
+let create_db = `CREATE DATABASE IF NOT EXISTS world`;
 db.query(create_db, (error, result) => {
   if (error) throw error;
   console.log(result);
@@ -23,7 +23,7 @@ db.query(create_db, (error, result) => {
 
 // create country table
 const create_country_table =
-  'CREATE TABLE country(`ID` INT(11)  AUTO_INCREMENT , `Name` VARCHAR(35) , `Continent` VARCHAR(35) ,`Population` INT(11),  `SurfaceArea` FLOAT(10,2) , PRIMARY KEY (`ID`))';
+  'CREATE TABLE IF NOT EXISTS country(`ID` INT(11)  AUTO_INCREMENT , `Name` VARCHAR(35) , `Continent` VARCHAR(35) ,`Population` INT(11),  `SurfaceArea` FLOAT(10,2) , PRIMARY KEY (`ID`))';
 db.query(create_country_table, (error, result) => {
   if (error) throw error;
   console.log(result);
@@ -58,7 +58,7 @@ for (let i in insert_country_queries) {
 
 // create city table
 const create_city_table =
-  'CREATE TABLE city( `ID` INT(11)  AUTO_INCREMENT,`Name` VARCHAR(35) ,`CountryCode` VARCHAR(3) ,`District` VARCHAR(20) ,`Population` INT(11) , PRIMARY KEY (`ID`))';
+  'CREATE TABLE IF NOT EXISTS city( `ID` INT(11)  AUTO_INCREMENT,`Name` VARCHAR(35) ,`CountryCode` VARCHAR(3) ,`District` VARCHAR(20) ,`Population` INT(11) , PRIMARY KEY (`ID`))';
 db.query(create_city_table, (error, result) => {
   if (error) throw error;
   console.log(result);
